@@ -1,0 +1,80 @@
+# New Philippines public HTTP proxy candidates; public monitoring snapshot Nov 5 2026
+# Test-only: HTTP CONNECT/HTTPS is not independently confirmed. Never use for account passwords or payments.
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: warning
+proxies:
+  - name: "PH-01-122.52.189.109"
+    type: http
+    server: 122.52.189.109
+    port: 8080
+  - name: "PH-02-126.209.105.226"
+    type: http
+    server: 126.209.105.226
+    port: 5050
+  - name: "PH-03-222.127.68.126"
+    type: http
+    server: 222.127.68.126
+    port: 8080
+  - name: "PH-04-122.54.120.79"
+    type: http
+    server: 122.54.120.79
+    port: 8080
+  - name: "PH-05-58.69.182.53"
+    type: http
+    server: 58.69.182.53
+    port: 8085
+  - name: "PH-06-61.245.9.172"
+    type: http
+    server: 61.245.9.172
+    port: 5050
+  - name: "PH-07-126.209.107.171"
+    type: http
+    server: 126.209.107.171
+    port: 8082
+  - name: "PH-08-126.209.84.5"
+    type: http
+    server: 126.209.84.5
+    port: 8082
+  - name: "PH-09-180.191.121.186"
+    type: http
+    server: 180.191.121.186
+    port: 8181
+  - name: "PH-10-112.198.132.107"
+    type: http
+    server: 112.198.132.107
+    port: 8082
+proxy-groups:
+  - name: PH-CHOOSE
+    type: select
+    proxies:
+      - PH-AUTO
+      - "PH-01-122.52.189.109"
+      - "PH-02-126.209.105.226"
+      - "PH-03-222.127.68.126"
+      - "PH-04-122.54.120.79"
+      - "PH-05-58.69.182.53"
+      - "PH-06-61.245.9.172"
+      - "PH-07-126.209.107.171"
+      - "PH-08-126.209.84.5"
+      - "PH-09-180.191.121.186"
+      - "PH-10-112.198.132.107"
+  - name: PH-AUTO
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300
+    tolerance: 200
+    proxies:
+      - "PH-01-122.52.189.109"
+      - "PH-02-126.209.105.226"
+      - "PH-03-222.127.68.126"
+      - "PH-04-122.54.120.79"
+      - "PH-05-58.69.182.53"
+      - "PH-06-61.245.9.172"
+      - "PH-07-126.209.107.171"
+      - "PH-08-126.209.84.5"
+      - "PH-09-180.191.121.186"
+      - "PH-10-112.198.132.107"
+rules:
+  - MATCH,PH-CHOOSE
