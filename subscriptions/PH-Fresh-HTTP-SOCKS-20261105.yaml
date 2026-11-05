@@ -1,0 +1,118 @@
+# Philippines public HTTP/SOCKS5 proxy candidates, 2026-11-05
+# Sources: litport.net, onlinecybertools.com, justfreeproxies.com, hproxy.com
+# Not independently tested from the user's internet connection. Public proxies are high-risk; use only for non-sensitive testing.
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: warning
+proxies:
+  - name: "PH-01 PLDT 75pct"
+    type: http
+    server: 122.2.48.121
+    port: 8080
+  - name: "PH-02 Globe 85pct"
+    type: http
+    server: 203.177.217.222
+    port: 8082
+  - name: "PH-03 PLDT 56pct"
+    type: http
+    server: 49.149.126.183
+    port: 8082
+  - name: "PH-04 PLDT 52pct"
+    type: http
+    server: 112.207.166.195
+    port: 8082
+  - name: "PH-05 PLDT 55pct"
+    type: http
+    server: 122.52.157.209
+    port: 8081
+  - name: "PH-06 Globe 53pct"
+    type: http
+    server: 180.190.222.184
+    port: 8080
+  - name: "PH-07 PLDT HTTPS"
+    type: http
+    server: 58.69.124.137
+    port: 8080
+  - name: "PH-08 PLDT HTTPS"
+    type: http
+    server: 124.106.83.244
+    port: 8083
+  - name: "PH-09 Fast HTTPS"
+    type: http
+    server: 124.107.39.186
+    port: 8082
+  - name: "PH-10 HTTPS"
+    type: http
+    server: 143.44.244.111
+    port: 8081
+  - name: "PH-11 HTTPS"
+    type: http
+    server: 122.3.207.67
+    port: 8089
+  - name: "PH-12 PLDT 50pct"
+    type: http
+    server: 160.187.221.206
+    port: 5900
+  - name: "PH-13 GooglePassed"
+    type: http
+    server: 49.151.189.78
+    port: 8082
+  - name: "PH-14 GooglePassed"
+    type: http
+    server: 122.52.110.142
+    port: 5050
+  - name: "PH-15 GooglePassed"
+    type: http
+    server: 180.190.188.49
+    port: 8080
+  - name: "PH-16 SkyCable SOCKS5"
+    type: socks5
+    server: 103.239.201.50
+    port: 58765
+    udp: false
+proxy-groups:
+  - name: PH-MANUAL
+    type: select
+    proxies:
+    - "PH-AUTO-TEST"
+    - "PH-01 PLDT 75pct"
+    - "PH-02 Globe 85pct"
+    - "PH-03 PLDT 56pct"
+    - "PH-04 PLDT 52pct"
+    - "PH-05 PLDT 55pct"
+    - "PH-06 Globe 53pct"
+    - "PH-07 PLDT HTTPS"
+    - "PH-08 PLDT HTTPS"
+    - "PH-09 Fast HTTPS"
+    - "PH-10 HTTPS"
+    - "PH-11 HTTPS"
+    - "PH-12 PLDT 50pct"
+    - "PH-13 GooglePassed"
+    - "PH-14 GooglePassed"
+    - "PH-15 GooglePassed"
+    - "PH-16 SkyCable SOCKS5"
+  - name: PH-AUTO-TEST
+    type: url-test
+    proxies:
+    - "PH-01 PLDT 75pct"
+    - "PH-02 Globe 85pct"
+    - "PH-03 PLDT 56pct"
+    - "PH-04 PLDT 52pct"
+    - "PH-05 PLDT 55pct"
+    - "PH-06 Globe 53pct"
+    - "PH-07 PLDT HTTPS"
+    - "PH-08 PLDT HTTPS"
+    - "PH-09 Fast HTTPS"
+    - "PH-10 HTTPS"
+    - "PH-11 HTTPS"
+    - "PH-12 PLDT 50pct"
+    - "PH-13 GooglePassed"
+    - "PH-14 GooglePassed"
+    - "PH-15 GooglePassed"
+    - "PH-16 SkyCable SOCKS5"
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300
+    tolerance: 200
+rules:
+  - MATCH,PH-MANUAL
